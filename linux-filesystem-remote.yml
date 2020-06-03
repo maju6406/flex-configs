@@ -3,7 +3,7 @@
 ---
 integrations:
   - name: nri-flex
-    # interval: 30s
+    interval: 10s
     config:
       name: RemoteFileSystem
       apis:
