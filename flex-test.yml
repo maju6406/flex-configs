@@ -1,0 +1,26 @@
+---
+integrations:
+  - name: nri-flex
+    config:
+      name: just-testing
+    config:
+      name: linuxFileSystemIntegration
+      apis:
+        - name: LFileSystem
+          commands:
+            - run: 'df -PT -B1 -x tmpfs -x xfs -x vxfs -x btrfs -x ext -x ext2 -x ext3 -x ext4'
+              split: horizontal
+              split_by: \s+
+              row_start: 1
+              set_header: [fs,fsType,capacityBytes,usedBytes,availableBytes,usedPerc,mountedOn]
+          perc_to_decimal: true
+    config:
+      name: linuxUptimeIntegration
+      apis:
+        - name: LUptime
+          commands:
+            - run: 'cat /proc/uptime'
+              split: horizontal
+              split_by: \s+
+              set_header: [uptimeSeconds,idletimeSeconds]
+    config_template_path: /root/flex-facter.yml
