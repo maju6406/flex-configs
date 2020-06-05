@@ -9,7 +9,7 @@ integrations:
       apis:
         - name: RemoteFileSystem
           commands:
-            - run: ssh -i /root/nr-laptop-amajumdar.pem root@target "df -T"
+            - run: ssh -i /root/nr-laptop-amajumdar.pem ubuntu@target "df -T"
               split: horizontal
               set_header:
                 [
